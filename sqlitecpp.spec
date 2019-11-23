@@ -61,11 +61,11 @@ popd
 %ninja_install -C %{_target_platform}
 
 %files
+%doc README.md CHANGELOG.md
+%license LICENSE.txt
 %{_libdir}/lib%{richname}.so.0*
 
 %files devel
-%doc README.md CHANGELOG.md
-%license LICENSE.txt
 %{_includedir}/%{richname}
 %{_libdir}/cmake/%{richname}
 %{_libdir}/lib%{richname}.so
