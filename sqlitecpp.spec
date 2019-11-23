@@ -39,15 +39,22 @@ echo "set_property(TARGET SQLiteCpp PROPERTY SOVERSION 0)" >> CMakeLists.txt
 
 # Removing bundled libraries...
 rm -rf sqlite3
+rm -rf googletest
 
 %build
 pushd %{_target_platform}
     %cmake -G Ninja \
     -DCMAKE_BUILD_TYPE=Release \
     -DSQLITECPP_INTERNAL_SQLITE=OFF \
+    -DSQLITECPP_BUILD_TESTS=OFF \
     ..
 popd
 %ninja_build -C %{_target_platform}
+
+%check
+pushd %{_target_platform}
+    ctest --output-on-failure
+popd
 
 %install
 %ninja_install -C %{_target_platform}
