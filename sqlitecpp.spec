@@ -47,6 +47,7 @@ pushd %{_target_platform}
     -DCMAKE_BUILD_TYPE=Release \
     -DSQLITECPP_INTERNAL_SQLITE=OFF \
     -DSQLITECPP_BUILD_TESTS=OFF \
+    -DSQLITECPP_BUILD_EXAMPLES=OFF \
     ..
 popd
 %ninja_build -C %{_target_platform}
