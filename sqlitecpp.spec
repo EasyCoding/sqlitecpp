@@ -1,4 +1,3 @@
-%global debug_package %{nil}
 %global richname SQLiteCpp
 
 Name: sqlitecpp
