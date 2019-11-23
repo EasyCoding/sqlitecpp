@@ -10,6 +10,7 @@ Summary: A smart and easy to use C++ SQLite3 wrapper
 URL: https://github.com/SRombauts/%{richname}
 Source0: %{url}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
 
+BuildRequires: sqlite-devel
 BuildRequires: ninja-build
 BuildRequires: gcc-c++
 BuildRequires: cmake
@@ -31,13 +32,19 @@ Requires: %{name}%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 %prep
 %autosetup -n %{richname}-%{version}
 mkdir -p %{_target_platform}
+
+# Patching CMakeLists...
 sed -e 's@DESTINATION lib@DESTINATION %{_lib}@g' -e 's@lib/@%{_lib}/@g' -i CMakeLists.txt
 echo "set_property(TARGET SQLiteCpp PROPERTY SOVERSION 0)" >> CMakeLists.txt
+
+# Removing bundled libraries...
+rm -rf sqlite3
 
 %build
 pushd %{_target_platform}
     %cmake -G Ninja \
     -DCMAKE_BUILD_TYPE=Release \
+    -DSQLITECPP_INTERNAL_SQLITE=OFF \
     ..
 popd
 %ninja_build -C %{_target_platform}
