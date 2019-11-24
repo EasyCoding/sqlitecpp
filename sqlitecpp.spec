@@ -32,6 +32,9 @@ Requires: %{name}%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 %autosetup -n %{richname}-%{version}
 mkdir -p %{_target_platform}
 
+# Fixing W: wrong-file-end-of-line-encoding...
+sed -e "s,\r,," -i README.md
+
 # Patching CMakeLists...
 sed -e 's@DESTINATION lib@DESTINATION %{_lib}@g' -e 's@lib/@%{_lib}/@g' -i CMakeLists.txt
 echo "set_property(TARGET SQLiteCpp PROPERTY SOVERSION 0)" >> CMakeLists.txt
