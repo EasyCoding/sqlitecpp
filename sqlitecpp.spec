@@ -5,9 +5,9 @@ Version: 2.4.0
 Release: 1%{?dist}
 
 License: MIT
-Summary: A smart and easy to use C++ SQLite3 wrapper
+Summary: Smart and easy to use C++ SQLite3 wrapper
 URL: https://github.com/SRombauts/%{richname}
-Source0: %{url}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
+Source0: %{url}/archive/%{version}/%{name}-%{version}.tar.gz
 
 BuildRequires: sqlite-devel
 BuildRequires: ninja-build
