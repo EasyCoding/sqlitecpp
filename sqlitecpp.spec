@@ -18,7 +18,12 @@ Patch1: %{name}-fix-installation.patch
 # https://github.com/SRombauts/SQLiteCpp/pull/231
 Patch2: %{name}-add-soversion.patch
 
+# https://github.com/SRombauts/SQLiteCpp/pull/232
+Patch3: %{name}-system-gtest.patch
+
 BuildRequires: sqlite-devel
+BuildRequires: gtest-devel
+BuildRequires: gmock-devel
 BuildRequires: ninja-build
 BuildRequires: gcc-c++
 BuildRequires: cmake
@@ -53,7 +58,7 @@ pushd %{_target_platform}
     %cmake -G Ninja \
     -DCMAKE_BUILD_TYPE=Release \
     -DSQLITECPP_INTERNAL_SQLITE=OFF \
-    -DSQLITECPP_BUILD_TESTS=OFF \
+    -DSQLITECPP_BUILD_TESTS=ON \
     -DSQLITECPP_BUILD_EXAMPLES=OFF \
     ..
 popd
