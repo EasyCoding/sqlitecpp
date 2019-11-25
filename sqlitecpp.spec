@@ -9,6 +9,15 @@ Summary: Smart and easy to use C++ SQLite3 wrapper
 URL: https://github.com/SRombauts/%{richname}
 Source0: %{url}/archive/%{version}/%{name}-%{version}.tar.gz
 
+# https://github.com/SRombauts/SQLiteCpp/pull/229
+Patch0: sqlitecpp-system-sqlite.patch
+
+# https://github.com/SRombauts/SQLiteCpp/pull/230
+Patch1: sqlitecpp-fix-installation.patch
+
+# https://github.com/SRombauts/SQLiteCpp/pull/231
+Patch2: sqlitecpp-add-soversion.patch
+
 BuildRequires: sqlite-devel
 BuildRequires: ninja-build
 BuildRequires: gcc-c++
@@ -29,15 +38,11 @@ Requires: %{name}%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 %{summary}.
 
 %prep
-%autosetup -n %{richname}-%{version}
+%autosetup -n %{richname}-%{version} -p1
 mkdir -p %{_target_platform}
 
 # Fixing W: wrong-file-end-of-line-encoding...
 sed -e "s,\r,," -i README.md
-
-# Patching CMakeLists...
-sed -e 's@DESTINATION lib@DESTINATION %{_lib}@g' -e 's@lib/@%{_lib}/@g' -i CMakeLists.txt
-echo "set_property(TARGET SQLiteCpp PROPERTY SOVERSION 0)" >> CMakeLists.txt
 
 # Removing bundled libraries...
 rm -rf sqlite3

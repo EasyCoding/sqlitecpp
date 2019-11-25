@@ -1,0 +1,27 @@
+From b84cbb0b19e858f235567d9249cb98283d2560c5 Mon Sep 17 00:00:00 2001
+From: Vitaly Zaitsev <vitaly@easycoding.org>
+Date: Mon, 25 Nov 2019 10:09:56 +0100
+Subject: [PATCH] Explicitly find and link against system sqlite library.
+
+Signed-off-by: Vitaly Zaitsev <vitaly@easycoding.org>
+---
+ CMakeLists.txt | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index c32724b..b4202b4 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -230,6 +230,12 @@ if (SQLITECPP_INTERNAL_SQLITE)
+     add_subdirectory(sqlite3)
+     target_include_directories(sqlite3 PUBLIC "${PROJECT_SOURCE_DIR}/sqlite3")
+     target_include_directories(SQLiteCpp PRIVATE "${PROJECT_SOURCE_DIR}/sqlite3")
++else (SQLITECPP_INTERNAL_SQLITE)
++    find_package (SQLite3)
++    if (SQLITE3_FOUND)
++        include_directories(${SQLITE3_INCLUDE_DIRS})
++        target_link_libraries (SQLiteCpp ${SQLITE3_LIBRARIES})
++    endif (SQLITE3_FOUND)
+ endif (SQLITECPP_INTERNAL_SQLITE)
+ 
+ # Optional additional targets:
