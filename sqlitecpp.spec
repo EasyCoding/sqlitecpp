@@ -11,13 +11,10 @@ Source0: %{url}/archive/%{version}/%{name}-%{version}.tar.gz
 
 # https://github.com/SRombauts/SQLiteCpp/pull/229
 Patch0: %{name}-system-sqlite.patch
-
 # https://github.com/SRombauts/SQLiteCpp/pull/230
 Patch1: %{name}-fix-installation.patch
-
 # https://github.com/SRombauts/SQLiteCpp/pull/231
 Patch2: %{name}-add-soversion.patch
-
 # https://github.com/SRombauts/SQLiteCpp/pull/232
 Patch3: %{name}-system-gtest.patch
 
