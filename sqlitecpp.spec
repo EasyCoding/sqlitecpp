@@ -2,7 +2,7 @@
 
 Name: sqlitecpp
 Version: 2.4.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 
 License: MIT
 Summary: Smart and easy to use C++ SQLite3 wrapper
@@ -80,5 +80,8 @@ popd
 %{_libdir}/lib%{richname}.so
 
 %changelog
+* Fri Jan 31 2020 Fedora Release Engineering <releng@fedoraproject.org> - 2.4.0-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_32_Mass_Rebuild
+
 * Sat Nov 23 2019 Vitaly Zaitsev <vitaly@easycoding.org> - 2.4.0-1
 - Initial SPEC release.
