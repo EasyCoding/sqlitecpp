@@ -2,16 +2,13 @@
 %global richname SQLiteCpp
 
 Name: sqlitecpp
-Version: 3.0.0
-Release: 2%{?dist}
+Version: 3.1.0
+Release: 1%{?dist}
 
 License: MIT
 Summary: Smart and easy to use C++ SQLite3 wrapper
 URL: https://github.com/SRombauts/%{richname}
 Source0: %{url}/archive/%{version}/%{name}-%{version}.tar.gz
-
-# https://github.com/SRombauts/SQLiteCpp/pull/287
-Patch100: %{name}-cmake-fix.patch
 
 BuildRequires: sqlite-devel
 BuildRequires: gtest-devel
@@ -68,6 +65,9 @@ rm -rf {sqlite3,googletest}
 %{_libdir}/lib%{richname}.so
 
 %changelog
+* Thu Aug 13 2020 Vitaly Zaitsev <vitaly@easycoding.org> - 3.1.0-1
+- Updated to version 3.1.0.
+
 * Wed Jul 29 2020 Fedora Release Engineering <releng@fedoraproject.org> - 3.0.0-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild
 
