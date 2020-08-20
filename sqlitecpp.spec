@@ -2,7 +2,7 @@
 %global richname SQLiteCpp
 
 Name: sqlitecpp
-Version: 3.1.0
+Version: 3.1.1
 Release: 1%{?dist}
 
 License: MIT
@@ -43,9 +43,9 @@ rm -rf {sqlite3,googletest}
 %build
 %cmake -G Ninja \
     -DCMAKE_BUILD_TYPE=Release \
-    -DSQLITECPP_INTERNAL_SQLITE=OFF \
-    -DSQLITECPP_BUILD_TESTS=ON \
-    -DSQLITECPP_BUILD_EXAMPLES=OFF
+    -DSQLITECPP_INTERNAL_SQLITE:BOOL=OFF \
+    -DSQLITECPP_BUILD_TESTS:BOOL=ON \
+    -DSQLITECPP_BUILD_EXAMPLES:BOOL=OFF
 %cmake_build
 
 %check
@@ -65,6 +65,9 @@ rm -rf {sqlite3,googletest}
 %{_libdir}/lib%{richname}.so
 
 %changelog
+* Thu Aug 20 2020 Vitaly Zaitsev <vitaly@easycoding.org> - 3.1.1-1
+- Updated to version 3.1.1.
+
 * Thu Aug 13 2020 Vitaly Zaitsev <vitaly@easycoding.org> - 3.1.0-1
 - Updated to version 3.1.0.
 
